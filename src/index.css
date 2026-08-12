@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .nav-tab-btn {
+    @apply px-3.5 py-1.5 rounded-xl text-xs font-medium text-zinc-400 hover:text-white hover:bg-zinc-900 border border-transparent transition flex items-center gap-1.5 cursor-pointer;
+  }
+
+  .nav-tab-btn.active {
+    @apply bg-white text-black font-bold shadow border border-white;
+  }
+
+  .nav-tab-btn.active-owner {
+    @apply bg-white text-black font-extrabold shadow border border-white;
+  }
+
+  .calc-btn-num {
+    @apply py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold rounded-xl text-base border border-zinc-800 transition cursor-pointer;
+  }
+
+  .calc-btn-op {
+    @apply py-3.5 bg-zinc-900 hover:bg-zinc-700 text-white font-bold rounded-xl text-base border border-zinc-700 transition cursor-pointer;
+  }
+
+  .calc-btn-sci {
+    @apply py-2 bg-zinc-950 hover:bg-zinc-800 text-zinc-300 font-mono text-xs rounded-lg border border-zinc-800 transition cursor-pointer;
+  }
+
+  .preset-btn {
+    @apply flex-1 py-1.5 bg-zinc-950 hover:bg-zinc-800 text-zinc-300 hover:text-white font-mono text-xs rounded-lg border border-zinc-800 transition cursor-pointer;
+  }
+}
+
+/* Custom B&W scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
