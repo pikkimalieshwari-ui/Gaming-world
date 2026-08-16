@@ -1,6 +1,6 @@
 {
   "name": "MK creative X",
-  "description": "Multi-utility productivity workspace with secure auth, owner management console, real-time chat with 100MB file attachments, integrated web browser, @MkIndustrial-t7s YouTube hub, scientific calculator, event calendar, and world clock.",
+  "description": "Futuristic multi-utility workspace with cinematic animated login, exclusive owner control portal, international audio news player with TTS, I-Know knowledge updates for Tesla, Physics, NASA, and ISRO, real-time 100MB file chat, integrated browser, @MkIndustrial YouTube hub, scientific calculator, calendar, and world clock.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

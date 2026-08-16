@@ -7,6 +7,8 @@ import { YouTubeTab } from './components/YouTubeTab';
 import { CalculatorTab } from './components/CalculatorTab';
 import { CalendarTab } from './components/CalendarTab';
 import { ClockTab } from './components/ClockTab';
+import { AudioNewsTab } from './components/AudioNewsTab';
+import { KnowledgeTab } from './components/KnowledgeTab';
 import { OwnerConsole } from './components/OwnerConsole';
 import { LoginModal } from './components/LoginModal';
 import { OwnerAccessModal } from './components/OwnerAccessModal';
@@ -18,7 +20,7 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isOwnerAuthenticated, setIsOwnerAuthenticated] = useState(false);
 
-  // Security Lockout states
+  // Security Lockout states (10-minute temporary block)
   const [isBlocked, setIsBlocked] = useState(false);
   const [blockedRemainingSeconds, setBlockedRemainingSeconds] = useState(0);
 
@@ -41,14 +43,14 @@ export default function App() {
         }
       }
     } catch {
-      // Ignore transient errors on startup or lock status check
+      // Transient error fallback
     }
   };
 
   useEffect(() => {
     checkLockoutStatus();
 
-    // Check if user session stored in localStorage
+    // Check if valid user session stored in localStorage
     const savedUser = localStorage.getItem('mk_user_session');
     if (savedUser) {
       try {
@@ -61,12 +63,10 @@ export default function App() {
                 const data = await res.json();
                 setCurrentUser(data.user);
                 localStorage.setItem('mk_user_session', JSON.stringify(data.user));
-                if (data.user.role === 'owner' || data.user.email.toLowerCase() === 'pikkimalieshwari@gmail.com') {
-                  setIsOwnerAuthenticated(true);
-                }
+                // Do NOT automatically authenticate owner console - must explicitly enter password Manoj X
+                setIsOwnerAuthenticated(false);
                 setIsLoginModalOpen(false);
               } else {
-                // User was deleted, rejected, or blocked on server
                 localStorage.removeItem('mk_user_session');
                 setCurrentUser(null);
                 setIsOwnerAuthenticated(false);
@@ -74,21 +74,26 @@ export default function App() {
               }
             })
             .catch(() => {
-              // Network fallback
-              setCurrentUser(parsed);
-              if (parsed.role === 'owner' || parsed.email === 'pikkimalieshwari@gmail.com') {
-                setIsOwnerAuthenticated(true);
-              }
+              localStorage.removeItem('mk_user_session');
+              setCurrentUser(null);
+              setIsOwnerAuthenticated(false);
+              setIsLoginModalOpen(true);
             });
         } else {
+          setCurrentUser(null);
+          setIsOwnerAuthenticated(false);
           setIsLoginModalOpen(true);
         }
       } catch (e) {
         localStorage.removeItem('mk_user_session');
+        setCurrentUser(null);
+        setIsOwnerAuthenticated(false);
         setIsLoginModalOpen(true);
       }
     } else {
-      // Force Login/Signup Modal on startup so user must sign in or register
+      // First visit: Show Login / Sign up modal first
+      setCurrentUser(null);
+      setIsOwnerAuthenticated(false);
       setIsLoginModalOpen(true);
     }
   }, []);
@@ -96,9 +101,9 @@ export default function App() {
   const handleLoginSuccess = (user: User) => {
     setCurrentUser(user);
     localStorage.setItem('mk_user_session', JSON.stringify(user));
-    if (user.role === 'owner') {
-      setIsOwnerAuthenticated(true);
-    }
+    // Standard login does NOT automatically unlock Owner Console; password Manoj X required
+    setIsOwnerAuthenticated(false);
+    setIsLoginModalOpen(false);
   };
 
   const handleLogout = () => {
@@ -106,18 +111,40 @@ export default function App() {
     setIsOwnerAuthenticated(false);
     localStorage.removeItem('mk_user_session');
     setActiveTab('chat');
+    setIsLoginModalOpen(true);
   };
 
   const handleOwnerGranted = () => {
     setIsOwnerAuthenticated(true);
     setActiveTab('owner-console');
 
-    // Upgrade current user if needed
+    // Upgrade current user if logged in, or create executive session
     if (currentUser) {
-      const updated = { ...currentUser, role: 'owner' as const };
+      const updated = {
+        ...currentUser,
+        name: currentUser.role === 'owner' ? currentUser.name : 'Manoj X',
+        role: 'owner' as const,
+        department: 'Executive Authority',
+      };
       setCurrentUser(updated);
       localStorage.setItem('mk_user_session', JSON.stringify(updated));
+    } else {
+      const executiveUser: User = {
+        id: 'usr_owner_primary',
+        email: 'pikkimalieshwari@gmail.com',
+        name: 'Manoj X',
+        role: 'owner',
+        department: 'Executive Authority',
+        isFired: false,
+        joinedAt: new Date().toISOString(),
+        avatarColor: 'from-zinc-100 to-zinc-400',
+        isApproved: true,
+        approvalStatus: 'accepted',
+      };
+      setCurrentUser(executiveUser);
+      localStorage.setItem('mk_user_session', JSON.stringify(executiveUser));
     }
+    setIsLoginModalOpen(false);
   };
 
   const handleBlockedTriggered = (seconds: number) => {
@@ -125,14 +152,14 @@ export default function App() {
     setBlockedRemainingSeconds(seconds);
   };
 
-  // If user is fired by owner
+  // If user is marked as fired by owner
   if (currentUser && currentUser.isFired) {
     return <FiredUserScreen user={currentUser} onLogout={handleLogout} />;
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white flex flex-col">
-      {/* Blocked Guard Screen (10 Minute Lockout) */}
+    <div className="min-h-screen bg-black text-zinc-100 font-sans antialiased flex flex-col selection:bg-white selection:text-black">
+      {/* Blocked Guard Screen (10-Minute Lockout) */}
       {isBlocked && (
         <BlockedScreen
           remainingSeconds={blockedRemainingSeconds}
@@ -143,7 +170,7 @@ export default function App() {
         />
       )}
 
-      {/* Main App Bar */}
+      {/* Main Navigation Bar */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -155,9 +182,11 @@ export default function App() {
         isBlocked={isBlocked}
       />
 
-      {/* Active Tab View Frame */}
-      <main className="flex-1 pb-10">
+      {/* Main Viewport Content */}
+      <main className="flex-1 pb-12">
         {activeTab === 'chat' && <ChatTab currentUser={currentUser} />}
+        {activeTab === 'news' && <AudioNewsTab />}
+        {activeTab === 'knowledge' && <KnowledgeTab />}
         {activeTab === 'browser' && <BrowserTab />}
         {activeTab === 'youtube' && <YouTubeTab />}
         {activeTab === 'calculator' && <CalculatorTab />}
@@ -166,7 +195,7 @@ export default function App() {
         {activeTab === 'owner-console' && <OwnerConsole currentUser={currentUser} />}
       </main>
 
-      {/* Authentication & Access Modals */}
+      {/* Animated Login Modal with Owner Security Portal */}
       <LoginModal
         isOpen={isLoginModalOpen || !currentUser}
         onClose={() => {
@@ -175,8 +204,11 @@ export default function App() {
           }
         }}
         onLoginSuccess={handleLoginSuccess}
+        onOwnerGranted={handleOwnerGranted}
+        onBlockedTriggered={handleBlockedTriggered}
       />
 
+      {/* Owner Access Fallback Modal */}
       <OwnerAccessModal
         isOpen={isOwnerModalOpen}
         onClose={() => setIsOwnerModalOpen(false)}

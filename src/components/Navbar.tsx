@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ActiveTab, User } from '../types';
 import {
   MessageSquare,
@@ -10,7 +10,10 @@ import {
   Crown,
   LogOut,
   LogIn,
-  ShieldAlert
+  Radio,
+  Sparkles,
+  Menu,
+  X
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -32,14 +35,40 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenOwnerModal,
   onOpenLoginModal,
   onLogout,
-  isBlocked,
 }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { id: 'chat' as ActiveTab, label: 'Chat & Files', icon: MessageSquare, badge: '100MB' },
+    { id: 'news' as ActiveTab, label: 'Audio News', icon: Radio, badge: 'TTS Live' },
+    { id: 'knowledge' as ActiveTab, label: 'I-Know Hub', icon: Sparkles, badge: 'NASA/ISRO' },
+    { id: 'browser' as ActiveTab, label: 'Browser', icon: Globe },
+    { id: 'youtube' as ActiveTab, label: 'YouTube', icon: Youtube },
+    { id: 'calculator' as ActiveTab, label: 'Calculator', icon: Calculator },
+    { id: 'calendar' as ActiveTab, label: 'Calendar', icon: Calendar },
+    { id: 'clock' as ActiveTab, label: 'Time', icon: Clock },
+  ];
+
+  const handleTabClick = (tab: ActiveTab) => {
+    setActiveTab(tab);
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleOwnerClick = () => {
+    if (isOwnerAuthenticated) {
+      handleTabClick('owner-console');
+    } else {
+      setIsMobileMenuOpen(false);
+      onOpenOwnerModal();
+    }
+  };
+
   return (
-    <header className="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-zinc-800 text-white font-sans">
+    <header className="sticky top-0 z-40 bg-black/90 backdrop-blur-xl border-b border-zinc-800 text-white font-sans">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
-        {/* Brand Logo - Pure High Contrast Monochrome */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-white text-black p-0.5 shadow">
+        {/* Brand Logo - High Contrast Monochrome */}
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="w-10 h-10 rounded-2xl bg-white text-black p-0.5 shadow-md">
             <div className="w-full h-full bg-black text-white rounded-[14px] flex items-center justify-center font-black text-base border border-white">
               MK
             </div>
@@ -52,101 +81,62 @@ export const Navbar: React.FC<NavbarProps> = ({
                 PRO
               </span>
             </div>
-            <p className="text-[10px] text-zinc-400 font-mono hidden sm:block">
-              Secure Monochrome Workspace & Owner Hub
+            <p className="text-[10px] text-zinc-400 font-mono hidden md:block">
+              Intelligent Workspace & Scientific Knowledge Portal
             </p>
           </div>
         </div>
 
         {/* Tab Switcher - Desktop */}
         <nav className="hidden xl:flex items-center gap-1 bg-zinc-950 border border-zinc-800 p-1 rounded-2xl shadow-inner">
-          <button
-            onClick={() => setActiveTab('chat')}
-            className={`nav-tab-btn ${activeTab === 'chat' ? 'active' : ''}`}
-          >
-            <MessageSquare className="w-3.5 h-3.5" />
-            <span>Chat & Files</span>
-            <span className="text-[9px] bg-zinc-900 text-white px-1 rounded font-mono border border-zinc-700">100MB</span>
-          </button>
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleTabClick(item.id)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-mono font-medium flex items-center gap-1.5 transition cursor-pointer ${
+                  isActive
+                    ? 'bg-white text-black font-bold shadow'
+                    : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span>{item.label}</span>
+                {item.badge && (
+                  <span
+                    className={`text-[9px] px-1 rounded border font-mono ${
+                      isActive
+                        ? 'bg-black text-white border-black'
+                        : 'bg-zinc-900 text-zinc-400 border-zinc-800'
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
 
+          {/* Owner Console Tab (Opens console if verified, or prompts for password Manoj X) */}
           <button
-            onClick={() => setActiveTab('browser')}
-            className={`nav-tab-btn ${activeTab === 'browser' ? 'active' : ''}`}
+            onClick={handleOwnerClick}
+            className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold flex items-center gap-1.5 transition cursor-pointer ${
+              activeTab === 'owner-console'
+                ? 'bg-amber-400 text-black shadow'
+                : isOwnerAuthenticated
+                ? 'text-amber-400 hover:bg-amber-950/40'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-900 border border-zinc-800/80'
+            }`}
           >
-            <Globe className="w-3.5 h-3.5" />
-            <span>Browser</span>
+            <Crown className={`w-3.5 h-3.5 ${isOwnerAuthenticated ? 'text-amber-400' : 'text-zinc-400'}`} />
+            <span>{isOwnerAuthenticated ? 'Owner Console' : 'Owner Access'}</span>
           </button>
-
-          <button
-            onClick={() => setActiveTab('youtube')}
-            className={`nav-tab-btn ${activeTab === 'youtube' ? 'active' : ''}`}
-          >
-            <Youtube className="w-3.5 h-3.5" />
-            <span>YouTube</span>
-            <span className="text-[9px] bg-zinc-900 text-zinc-300 px-1 rounded font-mono border border-zinc-700">@MkIndustrial</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('calculator')}
-            className={`nav-tab-btn ${activeTab === 'calculator' ? 'active' : ''}`}
-          >
-            <Calculator className="w-3.5 h-3.5" />
-            <span>Calculator</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('calendar')}
-            className={`nav-tab-btn ${activeTab === 'calendar' ? 'active' : ''}`}
-          >
-            <Calendar className="w-3.5 h-3.5" />
-            <span>Calendar</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('clock')}
-            className={`nav-tab-btn ${activeTab === 'clock' ? 'active' : ''}`}
-          >
-            <Clock className="w-3.5 h-3.5" />
-            <span>Time</span>
-          </button>
-
-          {isOwnerAuthenticated && (
-            <button
-              onClick={() => setActiveTab('owner-console')}
-              className={`nav-tab-btn ${activeTab === 'owner-console' ? 'active-owner' : ''}`}
-            >
-              <Crown className="w-3.5 h-3.5 text-black" />
-              <span>Owner Console</span>
-            </button>
-          )}
         </nav>
 
-        {/* Right Action Bar */}
+        {/* Right Action Bar (User Info / Logout) */}
         <div className="flex items-center gap-2">
-          {/* Owner Access Trigger Button */}
-          {isOwnerAuthenticated ? (
-            <button
-              onClick={() => setActiveTab('owner-console')}
-              className="px-3.5 py-1.5 bg-white text-black font-extrabold rounded-xl text-xs flex items-center gap-1.5 shadow border border-white cursor-pointer"
-            >
-              <Crown className="w-3.5 h-3.5 text-black" />
-              <span>Owner Mode</span>
-            </button>
-          ) : (
-            <button
-              onClick={onOpenOwnerModal}
-              className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition flex items-center gap-1.5 border cursor-pointer ${
-                isBlocked
-                  ? 'bg-zinc-900 text-zinc-200 border-zinc-600 animate-pulse'
-                  : 'bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-700'
-              }`}
-            >
-              {isBlocked ? <ShieldAlert className="w-3.5 h-3.5 text-white" /> : <Crown className="w-3.5 h-3.5 text-white" />}
-              <span>{isBlocked ? 'Owner Blocked' : 'Owner Access'}</span>
-            </button>
-          )}
-
-          {/* User Profile / Logout */}
           {currentUser ? (
             <div className="flex items-center gap-2">
               <div className="hidden sm:flex items-center gap-2 pl-2 border-l border-zinc-800 text-xs font-mono">
@@ -154,15 +144,25 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {currentUser.name.charAt(0).toUpperCase()}
                 </div>
                 <div className="text-left leading-tight">
-                  <div className="font-bold text-white truncate max-w-[100px]">{currentUser.name}</div>
+                  <div className="font-bold text-white truncate max-w-[110px]">{currentUser.name}</div>
                   <div className="text-[10px] text-zinc-400 capitalize">{currentUser.role}</div>
                 </div>
               </div>
 
+              {isOwnerAuthenticated && (
+                <button
+                  onClick={() => handleTabClick('owner-console')}
+                  className="hidden lg:flex px-3 py-1.5 bg-white text-black font-extrabold rounded-xl text-xs items-center gap-1.5 shadow border border-white cursor-pointer"
+                >
+                  <Crown className="w-3.5 h-3.5" />
+                  <span>Owner Mode</span>
+                </button>
+              )}
+
               <button
                 onClick={onLogout}
-                title="Sign Out"
-                className="p-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white rounded-xl border border-zinc-800 transition cursor-pointer"
+                title="Sign out"
+                className="p-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl border border-zinc-800 transition cursor-pointer"
               >
                 <LogOut className="w-4 h-4" />
               </button>
@@ -170,82 +170,67 @@ export const Navbar: React.FC<NavbarProps> = ({
           ) : (
             <button
               onClick={onOpenLoginModal}
-              className="px-3.5 py-1.5 bg-white text-black hover:bg-zinc-200 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow"
+              className="px-3.5 py-1.5 bg-white text-black font-black text-xs rounded-xl flex items-center gap-1.5 shadow hover:bg-zinc-200 transition cursor-pointer"
             >
               <LogIn className="w-3.5 h-3.5" />
-              Sign In
+              <span>Sign In</span>
             </button>
           )}
+
+          {/* Mobile Hamburger Menu Toggle */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="xl:hidden p-2 bg-zinc-900 text-zinc-300 hover:text-white rounded-xl border border-zinc-800"
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Nav Scroll Ribbon */}
-      <div className="xl:hidden bg-black px-4 py-2 border-t border-zinc-800 flex overflow-x-auto gap-2 text-xs font-mono">
-        <button
-          onClick={() => setActiveTab('chat')}
-          className={`px-3 py-1 rounded-lg font-medium whitespace-nowrap flex items-center gap-1 ${
-            activeTab === 'chat' ? 'bg-white text-black font-bold' : 'bg-zinc-900 text-zinc-400'
-          }`}
-        >
-          <MessageSquare className="w-3 h-3" /> Chat & Files (100MB)
-        </button>
+      {/* Mobile Drawer Menu */}
+      {isMobileMenuOpen && (
+        <div className="xl:hidden bg-zinc-950 border-b border-zinc-800 px-4 py-3 space-y-1">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleTabClick(item.id)}
+                className={`w-full px-3.5 py-2.5 rounded-xl text-xs font-mono font-medium flex items-center justify-between transition cursor-pointer ${
+                  isActive
+                    ? 'bg-white text-black font-bold shadow'
+                    : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Icon className="w-4 h-4" />
+                  <span>{item.label}</span>
+                </div>
+                {item.badge && (
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-zinc-900 text-zinc-400 border border-zinc-800 font-mono">
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
 
-        <button
-          onClick={() => setActiveTab('browser')}
-          className={`px-3 py-1 rounded-lg font-medium whitespace-nowrap flex items-center gap-1 ${
-            activeTab === 'browser' ? 'bg-white text-black font-bold' : 'bg-zinc-900 text-zinc-400'
-          }`}
-        >
-          <Globe className="w-3 h-3" /> Browser
-        </button>
-
-        <button
-          onClick={() => setActiveTab('youtube')}
-          className={`px-3 py-1 rounded-lg font-medium whitespace-nowrap flex items-center gap-1 ${
-            activeTab === 'youtube' ? 'bg-white text-black font-bold' : 'bg-zinc-900 text-zinc-400'
-          }`}
-        >
-          <Youtube className="w-3 h-3" /> YouTube
-        </button>
-
-        <button
-          onClick={() => setActiveTab('calculator')}
-          className={`px-3 py-1 rounded-lg font-medium whitespace-nowrap flex items-center gap-1 ${
-            activeTab === 'calculator' ? 'bg-white text-black font-bold' : 'bg-zinc-900 text-zinc-400'
-          }`}
-        >
-          <Calculator className="w-3 h-3" /> Calculator
-        </button>
-
-        <button
-          onClick={() => setActiveTab('calendar')}
-          className={`px-3 py-1 rounded-lg font-medium whitespace-nowrap flex items-center gap-1 ${
-            activeTab === 'calendar' ? 'bg-white text-black font-bold' : 'bg-zinc-900 text-zinc-400'
-          }`}
-        >
-          <Calendar className="w-3 h-3" /> Calendar
-        </button>
-
-        <button
-          onClick={() => setActiveTab('clock')}
-          className={`px-3 py-1 rounded-lg font-medium whitespace-nowrap flex items-center gap-1 ${
-            activeTab === 'clock' ? 'bg-white text-black font-bold' : 'bg-zinc-900 text-zinc-400'
-          }`}
-        >
-          <Clock className="w-3 h-3" /> Time
-        </button>
-
-        {isOwnerAuthenticated && (
           <button
-            onClick={() => setActiveTab('owner-console')}
-            className={`px-3 py-1 rounded-lg font-bold whitespace-nowrap flex items-center gap-1 ${
-              activeTab === 'owner-console' ? 'bg-white text-black' : 'bg-zinc-900 text-white'
+            onClick={handleOwnerClick}
+            className={`w-full px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center gap-2 transition cursor-pointer ${
+              activeTab === 'owner-console'
+                ? 'bg-amber-400 text-black shadow'
+                : isOwnerAuthenticated
+                ? 'text-amber-400 hover:bg-amber-950/40'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-900 border border-zinc-800/80'
             }`}
           >
-            <Crown className="w-3 h-3" /> Owner Console
+            <Crown className={`w-4 h-4 ${isOwnerAuthenticated ? 'text-amber-400' : 'text-zinc-400'}`} />
+            <span>{isOwnerAuthenticated ? 'Executive Owner Console' : 'Owner Access (Password Required)'}</span>
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 };

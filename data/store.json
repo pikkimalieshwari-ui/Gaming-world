@@ -1,0 +1,283 @@
+{
+  "usersStore": [
+    {
+      "id": "usr_owner_primary",
+      "email": "pikkimalieshwari@gmail.com",
+      "phone": "+15550100000",
+      "name": "Manoj X",
+      "role": "owner",
+      "department": "Executive Authority",
+      "isFired": false,
+      "joinedAt": "2026-08-15T00:00:00.000Z",
+      "avatarColor": "from-zinc-100 to-zinc-400",
+      "password": "Manoj X",
+      "isApproved": true,
+      "approvalStatus": "accepted"
+    }
+  ],
+  "messagesStore": [],
+  "newsStore": [
+    {
+      "id": "news_1",
+      "headline": "Global Clean Energy Grid Surpasses Historic 40% Generation Milestone",
+      "source": "International Energy Agency / Reuters",
+      "publishedAt": "2026-08-15T13:49:47.705Z",
+      "summary": "Renewable energy sources including next-generation solar arrays, offshore wind corridors, and industrial battery energy storage installations provided over 40% of global electricity demand this quarter.",
+      "category": "environment",
+      "imageUrl": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80",
+      "readTime": "3 min read",
+      "audioText": "Global Clean Energy Grid Surpasses Historic 40% Generation Milestone. According to the International Energy Agency, renewable energy deployments across five continents have achieved unprecedented grid stability, driven by industrial scale battery systems and utility solar expansion.",
+      "isBreaking": true,
+      "url": "https://www.iea.org/reports/renewables-2024",
+      "audioDurationSec": 42
+    },
+    {
+      "id": "news_2",
+      "headline": "Breakthrough High-Tc Superconducting Qubit Processor Achieves 99.9% Quantum Gate Fidelity",
+      "source": "Nature Quantum Science / MIT Review",
+      "publishedAt": "2026-08-15T12:58:47.705Z",
+      "summary": "Physicists have demonstrated continuous fault-tolerant quantum error correction running on a 256-qubit array with physical gate fidelities exceeding 99.9%, paving the way for commercially practical cryptographic simulations.",
+      "category": "technology",
+      "imageUrl": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80",
+      "readTime": "4 min read",
+      "audioText": "Breakthrough High-Tc Superconducting Qubit Processor Achieves 99.9% Quantum Gate Fidelity. Quantum researchers have achieved a monumental benchmark in error suppression, operating continuous topological quantum correction circuits without thermal decoherence.",
+      "isBreaking": false,
+      "url": "https://www.nature.com/subjects/quantum-physics",
+      "audioDurationSec": 48
+    },
+    {
+      "id": "news_3",
+      "headline": "Deep Space Optical Laser Transceiver Streams Ultra-HD Video from 300 Million Kilometers",
+      "source": "Space Science Daily / Jet Propulsion Laboratory",
+      "publishedAt": "2026-08-15T11:53:47.705Z",
+      "summary": "NASA's Deep Space Optical Communications experiment beamed high-bandwidth scientific telemetry and 4K optical video across interplanetary distances at 267 megabits per second, exceeding traditional radio frequency limits by 100x.",
+      "category": "space",
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+      "readTime": "4 min read",
+      "audioText": "Deep Space Optical Laser Transceiver Streams Ultra-HD Video from 300 Million Kilometers. The optical downlink successfully transmitted ultra high definition scientific imagery back to Earth from the Psyche spacecraft, establishing next-generation interplanetary broadband.",
+      "isBreaking": true,
+      "url": "https://www.nasa.gov/technology",
+      "audioDurationSec": 45
+    },
+    {
+      "id": "news_4",
+      "headline": "Global Central Banks Deploy Unified Interoperable ISO-20022 Cross-Border Settlement Network",
+      "source": "Financial Times / Bank for International Settlements",
+      "publishedAt": "2026-08-15T10:33:47.705Z",
+      "summary": "Multinational banking regulators finalized Project Agora, connecting wholesale central bank digital ledgers with commercial liquidity hubs for real-time instantaneous settlement across major global currency corridors.",
+      "category": "business",
+      "imageUrl": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
+      "readTime": "3 min read",
+      "audioText": "Global Central Banks Deploy Unified Interoperable Cross-Border Settlement Network. The Bank for International Settlements alongside forty international commercial financial institutions has integrated ISO-20022 tokenized multi-currency settlement rails for zero-counterparty risk transactions.",
+      "isBreaking": false,
+      "url": "https://www.bis.org",
+      "audioDurationSec": 50
+    },
+    {
+      "id": "news_5",
+      "headline": "Antarctic Ice-Shelf Micro-Drone Fleet Completes Sub-Glacial Hydrothermal Mapping",
+      "source": "Science Advances / British Antarctic Survey",
+      "publishedAt": "2026-08-15T09:03:47.705Z",
+      "summary": "Autonomous underwater gliders equipped with acoustic sensors penetrated beneath the Ross Ice Shelf, returning unprecedented data on deep sub-oceanic circulation and geothermal heat flux dynamics.",
+      "category": "science",
+      "imageUrl": "https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=1200&q=80",
+      "readTime": "5 min read",
+      "audioText": "Antarctic Ice-Shelf Micro-Drone Fleet Completes Sub-Glacial Hydrothermal Mapping. Autonomous gliders exploring underneath the Antarctic ice shelves have delivered real-time hydrothermal flux maps, improving planetary climate forecasting accuracy by twelve percent.",
+      "isBreaking": false,
+      "url": "https://www.bas.ac.uk",
+      "audioDurationSec": 44
+    },
+    {
+      "id": "news_6",
+      "headline": "Global Semiconductor Alliance Unveils 1.4-Nanometer Gate-All-Around Lithography Nodes",
+      "source": "EE Times / Tech World",
+      "publishedAt": "2026-08-15T07:33:47.705Z",
+      "summary": "Leading foundries announced yield verification on 1.4nm High-NA EUV nodes, delivering a 30% compute density increase and 22% power efficiency gain for next-generation edge AI computing architectures.",
+      "category": "technology",
+      "imageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      "readTime": "3 min read",
+      "audioText": "Global Semiconductor Alliance Unveils 1.4-Nanometer Gate-All-Around Lithography Nodes. Advanced silicon wafer production has reached the 1.4-nanometer threshold using high numerical aperture extreme ultraviolet tools, unlocking massive acceleration for localized neural networks.",
+      "isBreaking": false,
+      "url": "https://www.eetimes.com",
+      "audioDurationSec": 47
+    }
+  ],
+  "knowledgeStore": [
+    {
+      "id": "know_tesla_1",
+      "category": "tesla",
+      "headline": "Tesla Unveils Full Self-Driving V13 End-to-End Neural Architecture with 5x Parameter Scale",
+      "summary": "FSD V13 transitions vehicle trajectory prediction entirely to end-to-end vision neural networks, eliminating intermediate heuristics and expanding complex intersection capability.",
+      "fullExplanation": "Tesla's engineering division has deployed the Full Self-Driving (Supervised) V13 neural engine. Unlike prior revisions combining rule-based planner modules with visual object detectors, V13 ingests raw multi-camera photon streams and directly outputs control actuator commands (steering angle, throttle pressure, regenerative braking). Trained on over 10 billion miles of real-world fleet driving video data processed by Cortex supercomputing clusters, V13 improves complex un-signalized navigation, adverse weather handling, and multi-lane roundabouts.",
+      "publishedAt": "2026-08-15T12:00:00.000Z",
+      "source": "Tesla AI & Autonomy Division",
+      "status": "Official Announcement",
+      "imageUrl": "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["FSD V13", "END-TO-END AI", "NEURAL PLANNER", "CORTEX"],
+      "keyFacts": [
+        "Eliminates 300,000+ lines of explicit C++ motion-planning heuristics.",
+        "Trained across 50,000 H100/Dojo compute nodes in Austin, Texas.",
+        "Features 360-degree temporal occupancy networks at 36 frames per second."
+      ],
+      "readMoreUrl": "https://www.tesla.com/AI"
+    },
+    {
+      "id": "know_tesla_2",
+      "category": "tesla",
+      "headline": "Optimus Gen 3 Humanoid Robot Achieves 22-DoF Dexterous Hands and Autonomous Cell Assembly",
+      "summary": "Optimus Gen 3 introduces 22 degrees of freedom tactile actuators in each hand, capable of delicate tool manipulation, cable harnessing, and battery pack assembly in production factories.",
+      "fullExplanation": "The third-generation Tesla Optimus bipedal robot integrates bespoke planetary gear actuators and tactile sensors in all ten fingertips. Operating on the same FSD-derived neural network stack running on Tesla Hardware 4 computer boards, Optimus navigates factory floors, identifies components using spatial semantic segmentation, and adapts gripping pressure in real time.",
+      "publishedAt": "2026-08-15T11:00:00.000Z",
+      "source": "Tesla Robotics Laboratory",
+      "status": "Technology Milestone",
+      "imageUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["OPTIMUS GEN 3", "HUMANOID", "22-DOF HANDS", "TACTILE SENSORS"],
+      "keyFacts": [
+        "22 Degrees of Freedom per hand with tendon-driven actuators.",
+        "Full battery autonomy exceeding 16 continuous hours per charge cycle.",
+        "Total weight reduced by 14kg using structural titanium-aluminum chassis."
+      ],
+      "readMoreUrl": "https://www.tesla.com"
+    },
+    {
+      "id": "know_physics_1",
+      "category": "physics",
+      "headline": "Magnetic Confinement Fusion Reactor Sustains Q > 2.1 Net Energy Plasma for 1,200 Seconds",
+      "summary": "Tokamak experiments using high-temperature superconducting (HTS) magnets achieved continuous plasma stability exceeding 150 million degrees Celsius with record energy amplification.",
+      "fullExplanation": "Plasma physicists have announced a record-shattering fusion milestone. Utilizing REBCO (Rare Earth Barium Copper Oxide) high-temperature superconducting magnetic coils generating field strengths above 20 Tesla, researchers confined a deuterium-tritium plasma core for over twenty minutes. The thermal output energy delivered exceeded 2.1 times the electrical heating input, validating the engineering pathway for compact commercial fusion power generation by the early 2030s.",
+      "publishedAt": "2026-08-15T10:00:00.000Z",
+      "source": "Journal of Plasma Physics & ITER Consortium",
+      "status": "Peer-Reviewed Discovery",
+      "imageUrl": "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["NUCLEAR FUSION", "TOKAMAK", "HTS MAGNETS", "Q > 2.1"],
+      "keyFacts": [
+        "Central plasma ion temperature reached 165 Million °C (10x hotter than solar core).",
+        "Continuous steady-state high-confinement H-mode maintained for 1,200 seconds.",
+        "Barium copper oxide tapes reduced magnetic refrigeration load by 80%."
+      ],
+      "readMoreUrl": "https://www.iter.org"
+    },
+    {
+      "id": "know_physics_2",
+      "category": "physics",
+      "headline": "Observation of Non-Abelian Majorana Anyons Validates Topological Fault-Tolerant Quantum Computing",
+      "summary": "Experimental physicists have confirmed non-Abelian braiding statistics in semiconductor-superconductor heterostructures, establishing topological protection against quantum decoherence.",
+      "fullExplanation": "In a historic breakthrough for quantum condensed matter physics, researchers have experimentally braided zero-energy Majorana modes within planar nanowire arrays. Because non-Abelian anyons store quantum information non-locally in topological braids rather than localized spin states, the qubits remain immune to local environmental noise and thermal fluctuations, slashing physical-to-logical qubit overhead from 1,000:1 to under 10:1.",
+      "publishedAt": "2026-08-15T09:00:00.000Z",
+      "source": "Physical Review Letters",
+      "status": "Peer-Reviewed Discovery",
+      "imageUrl": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["MAJORANA MODES", "NON-ABELIAN", "TOPOLOGICAL QUBIT", "QUANTUM ERROR"],
+      "keyFacts": [
+        "Topological zero-bias conductance peaks confirmed at 2e²/h quantized value.",
+        "Demonstrates non-Abelian exchange statistics for the first time in solid-state devices.",
+        "Reduces cryogenic qubit control wiring requirements by two orders of magnitude."
+      ],
+      "readMoreUrl": "https://journals.aps.org/prl"
+    },
+    {
+      "id": "know_nasa_1",
+      "category": "nasa",
+      "headline": "Artemis Lunar Base Camp Completes Autonomous In-Situ Resource Water Extraction Tests",
+      "summary": "NASA's VIPER rover payloads and VIP-Extractor systems demonstrated extracting 99.4% pure water ice from permanently shadowed polar lunar craters.",
+      "fullExplanation": "NASA's Exploration Systems Development Mission Directorate has verified successful lunar regolith drill processing under cryogenic vacuum conditions. Sub-surface ice cores extracted from the South Pole's Shackleton Crater rim were heated in closed vapor reactors, delivering drinkable water and separating hydrogen-oxygen propellant for return spacecraft propulsion. This establishes sustainable lunar surface operations for the upcoming crewed Artemis surface missions.",
+      "publishedAt": "2026-08-15T08:00:00.000Z",
+      "source": "NASA Marshall Space Flight Center",
+      "status": "Confirmed Mission",
+      "imageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["ARTEMIS", "LUNAR BASE", "IN-SITU RESOURCES", "SHACKLETON"],
+      "keyFacts": [
+        "Successfully extracted 1.2 liters of water per 10 kg of polar cryogenic regolith.",
+        "Regolith sintering reactor produced oxygen at 98.7% purity.",
+        "Powered by vertical solar arrays positioned on permanently illuminated crater ridges."
+      ],
+      "readMoreUrl": "https://www.nasa.gov/artemis"
+    },
+    {
+      "id": "know_nasa_2",
+      "category": "nasa",
+      "headline": "Europa Clipper Spacecraft Deploys 9-Meter Radar Boom to Sound Jovian Subsurface Oceans",
+      "summary": "NASA's Europa Clipper mission completed instrument calibration in deep space, deploying ice-penetrating radar arrays designed to map Europa's global liquid ocean beneath its frozen crust.",
+      "fullExplanation": "En route to Jupiter, Europa Clipper deployed its flagship REASON (Radar for Europa Assessment and Sounding: Ocean to Near-surface) antenna array. Transmitting high-frequency radio pulses through vacuum, the instrument is engineered to penetrate up to 30 kilometers through Europa's outer ice sheet, searching for hydrothermal vents, salinity gradients, and potential biosignature environments in the ocean below.",
+      "publishedAt": "2026-08-15T07:00:00.000Z",
+      "source": "NASA Jet Propulsion Laboratory (JPL)",
+      "status": "Confirmed Mission",
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["EUROPA CLIPPER", "JUPITER", "OCEAN WORLDS", "REASON RADAR"],
+      "keyFacts": [
+        "Equipped with 9-meter dual-frequency ice-penetrating radar antennas.",
+        "Solar array wingspan measures over 30.5 meters (largest ever for a planetary mission).",
+        "Will conduct 49 close flybys of Europa dipping as low as 25 km above the surface."
+      ],
+      "readMoreUrl": "https://europa.nasa.gov"
+    },
+    {
+      "id": "know_isro_1",
+      "category": "isro",
+      "headline": "ISRO Gaganyaan Crew Module Completes Uncrewed Orbital Re-entry & Sea Recovery",
+      "summary": "The Indian Space Research Organisation successfully validated its Human-Rated LVM3 rocket, crew escape system, and parachuted capsule recovery in the Arabian Sea.",
+      "fullExplanation": "ISRO's Human Space Flight Centre (HSFC) has achieved a milestone with the Gaganyaan G1 orbital re-entry demonstration. The 4.5-tonne pressurized crew module was injected into a 400 km circular low Earth orbit, executed retrograde burns with precision, and endured extreme atmospheric entry temperatures before deploying supersonic drogue and main parachutes to splash down in the designated Arabian Sea landing zone.",
+      "publishedAt": "2026-08-15T06:00:00.000Z",
+      "source": "ISRO Human Space Flight Centre (HSFC)",
+      "status": "Confirmed Mission",
+      "imageUrl": "https://images.unsplash.com/photo-1517976487507-5803b91d2572?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["ISRO", "GAGANYAAN", "HUMAN SPACEFLIGHT", "LVM3-M4"],
+      "keyFacts": [
+        "Validated Crew Escape System (CES) with high-thrust solid propulsion motors.",
+        "Orbital module maintained 1 atm cabin pressure throughout re-entry flight path.",
+        "Indian Navy diving teams recovered telemetry recorders within 28 minutes of splashdown."
+      ],
+      "readMoreUrl": "https://www.isro.gov.in/Gaganyaan.html"
+    },
+    {
+      "id": "know_isro_2",
+      "category": "isro",
+      "headline": "ISRO Chandrayaan-4 Dual-Launch Architecture Finalized for Lunar Sample Return",
+      "summary": "ISRO's Chandrayaan-4 will employ two separate LVM3 launches to place Ascender, Transfer, and Re-entry modules in lunar orbit, docking autonomously to bring pristine soil back to Earth.",
+      "fullExplanation": "The Space Commission has finalized the mission architecture for Chandrayaan-4. The mission utilizes modular staging: Launch 1 carries the Lander and Ascender Modules, while Launch 2 delivers the Propulsion and Earth Return Modules. After soft landing near the lunar south pole and robotically drilling 2 meters beneath the regolith, the ascender will dock autonomously in lunar orbit with the return vehicle.",
+      "publishedAt": "2026-08-15T05:00:00.000Z",
+      "source": "ISRO Space Applications Centre (SAC)",
+      "status": "Official Announcement",
+      "imageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["CHANDRAYAAN-4", "SAMPLE RETURN", "LUNAR DOCKING", "LVM3"],
+      "keyFacts": [
+        "Autonomous rendezvous and docking in 100 km lunar orbit.",
+        "Targeting collection of 2 to 3 kg of pristine lunar sub-surface soil samples.",
+        "Equipped with robotic coring drill and robotic transfer arm."
+      ],
+      "readMoreUrl": "https://www.isro.gov.in"
+    }
+  ],
+  "announcementsStore": [
+    {
+      "id": "ann_1",
+      "title": "MK creative X Global Portal Reset & Upgrade",
+      "content": "Website data, saved member roster, and Signals have been cleanly reset. Executive owner authentication and intelligence systems are fully synchronized.",
+      "date": "2026-08-15T00:00:00.000Z",
+      "createdBy: "Manoj X",
+      "isUrgent": true,
+      "active": true
+    }
+  ],
+  "featureFlagsStore": {
+    "chat": true,
+    "browser": true,
+    "youtube": true,
+    "news": true,
+    "knowledge": true,
+    "calculator": true,
+    "calendar": true,
+    "clock": true
+  },
+  "activityLogsStore": [
+    {
+      "id": "log_init_reset",
+      "type": "admin",
+      "description": "System reset executed. Saved emails and Signals purged. Owner password updated to Manoj X.",
+      "timestamp": "2026-08-15T00:00:00.000Z",
+      "userEmail": "pikkimalieshwari@gmail.com"
+    }
+  ],
+  "ownerBlockedUntil": null,
+  "lastSavedAt": "2026-08-15T00:00:00.000Z"
+}

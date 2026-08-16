@@ -95,18 +95,78 @@ export interface YouTubeVideo {
   videoId: string;
 }
 
-export interface SystemAnnouncement {
+export interface AnnouncementRecord {
   id: string;
   title: string;
-  content: string;
-  date: string;
-  createdBy: string;
+  body: string;
+  priority: 'normal' | 'important' | 'emergency';
+  author: string;
+  createdAt: string;
+}
+
+export type NewsCategory = 'all' | 'world' | 'technology' | 'science' | 'space' | 'business' | 'environment';
+
+export interface NewsArticle {
+  id: string;
+  headline: string;
+  source: string;
+  publishedAt: string;
+  summary: string;
+  category: 'world' | 'technology' | 'science' | 'space' | 'business' | 'environment';
+  imageUrl: string;
+  readTime: string;
+  audioText: string;
+  isBreaking?: boolean;
+  url?: string;
+  audioDurationSec?: number;
+}
+
+export type KnowledgeCategory = 'all' | 'tesla' | 'physics' | 'nasa' | 'isro';
+
+export interface KnowledgeArticle {
+  id: string;
+  category: 'tesla' | 'physics' | 'nasa' | 'isro';
+  headline: string;
+  summary: string;
+  fullExplanation: string;
+  publishedAt: string;
+  source: string;
+  status: 'Confirmed Mission' | 'Peer-Reviewed Discovery' | 'Official Announcement' | 'Technology Milestone';
+  imageUrl: string;
+  tags: string[];
+  keyFacts: string[];
+  readMoreUrl?: string;
+}
+
+export interface SiteFeatureFlags {
+  chatEnabled?: boolean;
+  browserEnabled?: boolean;
+  youtubeEnabled?: boolean;
+  audioNewsEnabled?: boolean;
+  knowledgeEnabled?: boolean;
+  calculatorEnabled?: boolean;
+  calendarEnabled?: boolean;
+  clockEnabled?: boolean;
+  notesEnabled?: boolean;
+  whiteboardEnabled?: boolean;
+  [key: string]: boolean | undefined;
+}
+
+export interface ActivityLogItem {
+  id: string;
+  action: string;
+  details: string;
+  actorEmail: string;
+  category: 'security' | 'admin' | 'auth';
+  timestamp: string;
 }
 
 export type ActiveTab = 
   | 'chat'
   | 'browser'
   | 'youtube'
+  | 'news'
+  | 'knowledge'
   | 'calculator'
   | 'calendar'
   | 'clock'
